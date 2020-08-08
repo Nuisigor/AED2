@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 void troca(int *v, int pos1, int pos2){
     int aux = v[pos1];
@@ -15,6 +17,18 @@ void bubble_sort(int *v, int n){
     }
 }
 
+int* random_vector(int n, int max, int seed){
+    int *v = (int*) calloc(n,sizeof(int));
+    srand(seed);
+    
+    for(int i = 0; i < n; i++){
+        int aux = rand()% 101;
+        v[i] = aux;
+    }
+    
+    return v;
+}
+
 void printv(int *v, int n){
     printf("[ ");
     for(int i = 0; i < n; i++){
@@ -27,8 +41,10 @@ void printv(int *v, int n){
 
 
 int main(){
-    int v[] = {2,6,88,4,6,9,55};
-    printv(v, sizeof(v)/4);
-    bubble_sort(v,sizeof(v)/4);
-    printv(v, sizeof(v)/4);
+    int tam = 100;
+    int *v = random_vector(tam, 1000, 0);
+    
+    printv(v, tam);
+    bubble_sort(v, tam);
+    printv(v, tam);
 }
