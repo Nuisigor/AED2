@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
+int comparacao = 0;
+
 int MAX(int *v, int st, int end){
     int aux = st;
-    int maior = v[st];
 
-    for(int i = st+1; i <= end; i++){
+    for(int i = st; i <= end; i++){
         if(v[i] > v[aux])
             aux = i;
+        comparacao++;
     }
     return aux;
 }
@@ -52,10 +54,15 @@ void printv(int *v, int n){
 
 
 int main(){
+    clock_t t;
+    t = clock();
     int tam = 100;
     int *v = random_vector(tam, 1000, 0);
- 
-    printv(v, tam);
     selection_sort(v, tam);
-    printv(v, tam);
+
+    t = clock() - t;
+    printf("Tempo = %.3f s\n", ((float)t)/CLOCKS_PER_SEC);
+
+    printf("Quantidade de comparações Selection= %d\n",comparacao);
+
 }

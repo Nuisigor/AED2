@@ -2,20 +2,27 @@
 #include <stdlib.h>
 #include <time.h>
 
-void insertion(int *v, int k){
+
+int insertion(int *v, int k){
     int i = k-1;
     int aux = v[k];
+
+    int comparacao = 0;
     while((aux < v[i]) && (i >= 0)){
         v[i+1] = v[i];
         i--;
+        comparacao++;
     }
     v[i+1] = aux;
+    return comparacao;
 }
 
-void insertion_sort(int *v, int n){
+int insertion_sort(int *v, int n){
+    int comparacao = 0;
     for(int i = 1; i < n; i++){
-        insertion(v,i);
+        comparacao += insertion(v,i);
     }
+    return comparacao;
 }
 
 int* random_vector(int n, int max, int seed){
@@ -42,10 +49,14 @@ void printv(int *v, int n){
 
 
 int main(){
+    clock_t t;
+    t = clock();
     int tam = 100;
     int *v = random_vector(tam, 1000, 0);
+    int comparacao = insertion_sort(v, tam);
 
-    printv(v, tam);
-    insertion_sort(v, tam);
-    printv(v, tam);
+    t = clock() - t;
+    printf("Tempo = %lf s\n", ((long double)t)/CLOCKS_PER_SEC);
+
+    printf("Quantidade de comparações Selection= %d\n",comparacao);
 }

@@ -8,13 +8,16 @@ void troca(int *v, int pos1, int pos2){
     v[pos2] = aux;
 }
 
-void bubble_sort(int *v, int n){
+int bubble_sort(int *v, int n){
+    int comparacao = 0;
     for(int i = n-1; i > 0; i--){
         for(int j = 0; j < i; j++){
             if(v[j] > v[j+1])
                 troca(v, j, j+1);
+            comparacao++;
         }
     }
+    return comparacao;
 }
 
 int* random_vector(int n, int max, int seed){
@@ -41,10 +44,15 @@ void printv(int *v, int n){
 
 
 int main(){
+    clock_t t;
+    t = clock();
+    int comparacao;
     int tam = 100;
-    int *v = random_vector(tam, 1000, 0);
-    
-    printv(v, tam);
-    bubble_sort(v, tam);
-    printv(v, tam);
+    int *v = random_vector(tam, 100, 0);
+    comparacao = bubble_sort(v, tam);
+
+    t = clock() - t;
+    printf("Tempo = %f s\n", ((float)t)/CLOCKS_PER_SEC);
+
+    printf("Quantidade de comparações Bubble= %d\n",comparacao);
 }
