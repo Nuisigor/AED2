@@ -6,8 +6,8 @@
 #include "bubbleSort.h"
 #include "insertionSort.h"
 #include "selectionSort.h"
-#include "partition.h"
-#include "merge.h"
+#include "quickSort.h"
+#include "mergeSort.h"
 
 #define DEBUG 0
 

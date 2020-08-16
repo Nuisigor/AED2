@@ -1,4 +1,4 @@
-#include "partition.h"
+#include "quickSort.h"
 
 
 int bubble_Sort(int *v, int n){

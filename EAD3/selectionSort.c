@@ -1,4 +1,4 @@
-#include "partition.h"
+#include "quickSort.h"
 
 int MAX(int *v, int st, int end){
     int aux = st;
