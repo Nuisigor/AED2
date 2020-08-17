@@ -14,8 +14,7 @@ int* random_vector(int n, int max, int seed){
     srand(seed);
     
     for(int i = 0; i < n; i++){
-        int aux = rand()% max;
-        v[i] = aux;
+        v[i] = rand() % (max+1);    
     }
     
     return v;
