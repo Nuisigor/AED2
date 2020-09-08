@@ -1,0 +1,1 @@
+int sequencial(int *v, int n, int x);

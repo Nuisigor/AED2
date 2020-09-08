@@ -1,0 +1,1 @@
+int buscabin(int *v, int n, int x);
