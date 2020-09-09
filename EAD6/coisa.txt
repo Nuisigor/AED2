@@ -12,15 +12,23 @@ int MAX(int *v, int st, int end){
     return max;
 }
 
+int MIN(int *v, int st, int end){
+    int min = st;
+    for(int i = st+1; i <= end; i++){
+        if(v[i] < v[min])
+            min = i;
+    }
+    return min;
+}
 int SelectionMinK(int *v, int n, int k){
     if(k >= n)
         return v[MAX(v, 0, n-1)];
     else{
         int i;
-        int maior, pos;
-        for(i = n-1; i > k-2; i--){
-            maior = MAX(v,0,i);
-            troca(v, maior, i);
+        int menor, pos;
+        for(int i = 0; i < k; i++){
+            menor = MIN(v, i, n-1);
+            troca(v, i, menor);
             pos = i;
         }
         return v[pos];
@@ -62,15 +70,18 @@ void buildMinHeap(int *v, int n){
 
 int HeapMinK(int *v, int n, int k){
     int i;
-    buildMinHeap(v,n);
-    for(i = n-1; i > 0; i--){
-        troca(v, 0 , i);
-        minHeapify(v, 0, i);
-    }
+    int x;
     if(k > n)
-        return v[0];
-    else
-        return v[n-k];
+        return MAX(v,0,n);
+
+    buildMinHeap(v,n);
+    for(i = n-1; i > n-k-1; i--){
+        troca(v, 0 , i);
+        minHeapify(v, 0, i-1);
+        x = v[i];
+    }
+    
+    return x;
 }
 
 //----------------------- QUICKMINK -----------------------//
