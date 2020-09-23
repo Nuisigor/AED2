@@ -15,6 +15,7 @@ typedef struct ELEM{
 typedef struct THEA{
     int m;
     ELEM* th;
+    int N;
 }THEA;
 
 int THEA_Hash(THEA* th, int chave, int k);
@@ -24,3 +25,5 @@ int THEA_Buscar(THEA* th, int chave);
 int THEA_Remover(THEA* th, int chave);
 int THEA_ClusterMaximo(THEA* TH);
 float THEA_TamMedioClusters(THEA* TH);
+float THEA_CustoBemSucedida(THEA *TH);
+THEA* random_hash(int n, int m, int max, int seed);
